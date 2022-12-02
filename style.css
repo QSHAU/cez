@@ -19,7 +19,7 @@ body {
 body {
   color: #000;
   line-height: 1;
-  font-family: "";
+  font-family: sans-serif;
   font-size: 0.875rem;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
@@ -31,7 +31,7 @@ body {
 input,
 button,
 textarea {
-  font-family: "";
+  font-family: inherit;
   font-size: inherit;
 }
 
@@ -118,17 +118,23 @@ h6 {
   color: #ffffff;
   padding: 0.875rem 1.25rem;
   border-radius: 4px;
-  transition: all 0.2s ease;
+  max-width: 200px;
+  width: 100%;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
 }
 .btn:focus {
   border: 4px solid #549de7;
 }
 .btn:hover {
-  opacity: 0.9;
+  background: #EEF4FA;
+  color: #3078C0;
+  border: 1px solid #3078C0;
 }
 
 .btn-fill {
   background: #3078c0;
+  margin-right: 20px;
 }
 .btn-fill:active {
   background: #1660aa;
@@ -144,6 +150,10 @@ h6 {
   color: #3078c0;
   background: #eef4fa;
   border: 1px solid #3078c0;
+}
+.btn-outline:hover {
+  background-color: #3078c0;
+  color: #FFF;
 }
 .btn-outline:active {
   color: #1660aa;
@@ -162,7 +172,7 @@ h6 {
 }
 
 .title {
-  font-family: "Golos";
+  font-family: "Golos", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 1.875rem;
@@ -199,6 +209,15 @@ h6 {
 .content-links .content-link {
   display: flex;
   gap: 0.625rem;
+  max-width: 225px;
+}
+
+.content-links .content-link svg {
+  transition: filter .3s;
+}
+
+.content-links .content-link:hover svg {
+  filter: grayscale(1) brightness(2.5);
 }
 @media (max-width: 29.99875em) {
   .content-links .content-link p {
@@ -245,6 +264,7 @@ h6 {
 }
 .filters-button svg {
   margin-left: 0.625rem;
+  transform: rotate(180deg);
   transition: all 0.3s ease-in-out;
 }
 .filters-button:hover {
@@ -252,17 +272,21 @@ h6 {
 }
 
 .filters-inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 32px;
+  grid-row-gap: 20px;
   background: #eef4fa;
   border: 1px solid #dde7f0;
   border-radius: 4px;
   margin-top: 2.5rem;
   padding: 2.5rem;
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
-  gap: 1.25rem;
-  transition: all 0.3s ease-in-out;
+  align-items: center; */
+  height: 100%;
+  transition: all 0.5s ease-in-out;
 }
 
 .filter-select {
@@ -270,13 +294,13 @@ h6 {
   border: 1px solid #dde7f0;
   border-radius: 4px;
   padding: 0.75rem 0.9375rem;
+  margin-top: auto;
+  height: 3.3rem;
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.5;
   color: #888888;
-  height: 3rem;
-  flex: 1 1 340px;
-  margin-top: 18px;
+  transition: opacity .3s;
 }
 @media (max-width: 61.99875em) {
   .filter-select {
@@ -305,7 +329,7 @@ input[type=number] {
   }
 }
 .filter-range__title {
-  font-family: "Golos";
+  font-family: "Golos", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 1rem;
@@ -320,12 +344,11 @@ input[type=number] {
   display: flex;
   align-items: center;
   flex-grow: 1;
-  height: 2.5rem;
   border: 1px solid #dde7f0;
   background: #ffffff;
   border-radius: 4px;
   padding: 0.9375rem;
-  padding-top: 0.5625rem;
+  padding-top: 0.9625rem;
   width: 50%;
 }
 .filter-range__label:nth-child(1) {
@@ -340,11 +363,10 @@ input[type=number] {
   justify-content: flex-end;
 }
 .filter-range__text {
-  font-family: "Golos";
+  font-family: "Golos", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 1rem;
-  line-height: 1.5;
   color: #333333;
 }
 .filter-range__text:first-child {
@@ -354,22 +376,21 @@ input[type=number] {
   margin-left: 3px;
 }
 .filter-range__input {
-  font-family: "Golos";
+  font-family: "Golos", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 1rem;
-  line-height: 1.5;
-  color: #333333;
   color: #333333;
 }
-.filter-range__slider {
+/* .filter-range__slider {
   margin-bottom: 1.25rem;
-}
+} */
 
 .filter-buttons {
-  flex: 1 1 999px;
   display: flex;
-  gap: 1.25rem;
+  align-items: center;
+  margin-top: 20px;
+  grid-column-start: 1;
 }
 
 .noUi-connect {
@@ -393,7 +414,11 @@ input[type=number] {
   box-shadow: none;
   border-radius: 100%;
   background-color: #fff;
-  border: 4px solid #5d71dd;
+  border: 4px solid #3078C0;
+}
+
+.noUi-connect {
+  background-color: #3078C0;
 }
 
 .noUi-handle.noUi-handle-lower {
@@ -419,35 +444,30 @@ input[type=number] {
   margin: 0;
 }
 .content-header.deactivate .filters-inner * {
-  height: 0;
   opacity: 0;
-  visibility: hidden;
-  border: none;
-  padding: 0;
-  margin: 0;
 }
 .content-header.deactivate .filters-button svg {
-  transform: rotate(180deg) translateY(2px);
+  transform: rotate(0deg) translateY(2px);
 }
 
 .participants__cards {
-  display: flex;
-  gap: 1.875rem;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 32px;
+  grid-row-gap: 30px;
 }
 .participants__card {
-  max-width: 28.5rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ededed;
+  border-radius: 4px;
   width: 100%;
+  transition: box-shadow .3s;
   position: relative;
 }
 .participants__card-top {
   padding-bottom: 0.9375rem;
   background: #ffffff;
-  border: 1px solid #ededed;
-  border-radius: 4px;
-  border-bottom: none;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
   overflow: hidden;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -461,33 +481,26 @@ input[type=number] {
 .participants__card:hover {
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.12);
 }
-.participants__card:hover .participants__card-bottom {
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.12);
-}
 .participants__card-bottom {
-  transition: all 0.3s ease-in;
-  position: absolute;
+  display: flex;
+  flex-direction: column;
   background: #fff;
-  max-width: 28.5rem;
   width: 100%;
+  flex: 1 0 auto;
   background: #ffffff;
-  border: 1px solid #ededed;
-  border-radius: 4px;
-  border-top: none;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  bottom: -50px;
+  transition: all 0.3s;
 }
-.participants__card-bottom.active {
-  bottom: -213px;
-  z-index: 4;
+.active .participants__card-bottom {
+  /* bottom: -213px;
+  z-index: 4; */
+  height: auto;
 }
 .participants__card-image img {
   -o-object-fit: cover;
      object-fit: cover;
 }
 .participants__card-title {
-  font-family: "Golos";
+  font-family: "Golos", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 1.25rem;
@@ -524,16 +537,18 @@ input[type=number] {
 }
 
 .block__more {
-  font-family: "Golos";
+  font-family: "Golos", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
+  text-align: left;
   /* identical to box height, or 143% */
   letter-spacing: 0.01em;
   text-transform: uppercase;
   margin-left: 1.25rem;
-  padding-top: 1.25rem;
-  color: #3078c0;
   margin-bottom: 1.875rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  color: #3078c0;
 }/*# sourceMappingURL=style.css.map */
