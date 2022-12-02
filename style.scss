@@ -1,0 +1,223 @@
+@use "sass:math";
+// Подключение миксинов ===========================================================================================================================================================================================================================================================================
+@import "base/mixins";
+
+// Подключение шрифтов ===========================================================================================================================================================================================================================================================================
+//&display=swap - добавить при подключении через плагин
+
+// Подключить если есть локальные файлы шрифтов
+//@import "fonts/fonts";
+
+// Подключение иконочных шрифтов ==============================================================================================================================================================================================================================================================================
+// Подключить если есть файл иконочного шрифта
+//@import "fonts/icons";
+
+// Шрифт по умолчанию ==============================================================================================================================================================================================================================================================================
+$fontFamily: "";
+$fontSize: rem(14); // где 14(px) - размер шрифта по умолчанию из макета
+
+// Основные цвета
+$mainColor: #000; // Цвет шрифта по умолчанию
+
+// НАСТРОЙКИ ===============================================================================================================================================================================================================================================================================================
+// Минимальная ширина страницы
+$minWidth: 450;
+// Ширина полотна (макета)
+$maxWidth: 1920;
+// Ширина ограничивающего контейнера (0 = нет ограничения)
+$maxWidthContainer: 1432;
+// Общий отступ у контейнера
+// (30 = по 15px слева и справа, 0 = нет отступа)
+$containerPadding: 18;
+
+// Тип адаптива:
+// 1 = отзывчивость (у контейнера нет брейкпоинтов),
+// 2 = по брейк-поинтам (контейнер меняет свою ширину по брейк-поинтам)
+$responsiveType: 1;
+
+// Ширина страбатывания первого брейкпоинта
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+// Брейк-поинты
+$pc: em(
+  $containerWidth
+); // ПК, ноутбуки, некоторые планшеты в горизонтальном положении
+$tablet: em(991.98); // Планшеты, некоторые телефоны в горизонтальном положении
+$mobile: em(767.98); // Телефоны L
+$mobileSmall: em(479.98); // Телефоны S
+
+// Обнуление и общие параметры ============================================================================================================================================================================================== =============================================================================================== ===============================================================================================
+@import "base/null";
+
+[class*="__container"] {
+  @if ($maxWidthContainer>0) {
+    max-width: rem($maxWidthContainer);
+    box-sizing: content-box;
+    margin: 0 auto;
+  }
+  @if ($containerPadding>0) {
+    padding: 0;
+    @include adaptiveValue("padding-left", 32, 20);
+    @include adaptiveValue("padding-right", 32, 20);
+  }
+}
+
+// Брейк-поинты
+$pc: em(
+  $containerWidth
+); // ПК, ноутбуки, некоторые планшеты в горизонтальном положении
+$tablet: em(991.98); // Планшеты, некоторые телефоны в горизонтальном положении
+$mobile: em(768.98); // Телефоны L
+$mobileSmall: em(479.98); // Телефоны S
+
+@import "ui";
+@import "content";
+
+.content-header.deactivate {
+  .filters-inner {
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    border: none;
+    padding: 0;
+    margin: 0;
+    * {
+      height: 0;
+      opacity: 0;
+      visibility: hidden;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+  }
+  .filters-button svg {
+    transform: rotate(180deg) translateY(2px);
+  }
+}
+
+.participants {
+  // .participants__cards
+
+  &__cards {
+    display: flex;
+    gap: rem(30);
+    flex-wrap: wrap;
+  }
+
+  // .participants__card
+
+  &__card {
+    max-width: rem(456);
+    width: 100%;
+    position: relative;
+    &-top {
+      padding-bottom: rem(15);
+
+      background: #ffffff;
+      border: 1px solid #ededed;
+      border-radius: 4px;
+      border-bottom: none;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      overflow: hidden;
+      height: fit-content;
+      position: relative;
+      z-index: 3;
+    }
+
+    &._showmore-active {
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.12);
+    }
+    &:hover {
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.12);
+      .participants__card-bottom {
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.12);
+      }
+    }
+    &-bottom {
+      transition: all .3s ease-in;
+      position: absolute;
+      background: #fff;
+      max-width: rem(456);
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid #ededed;
+      border-radius: 4px;
+      border-top: none;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      bottom: -50px;
+      &.active {
+        bottom: -213px;
+        z-index: 4;
+      }
+    }
+  }
+
+  // .participants__card-image
+
+  &__card-image {
+    img {
+      object-fit: cover;
+    }
+  }
+
+  // .participants__card-title
+
+  &__card-title {
+    font-family: "Golos";
+    font-style: normal;
+    font-weight: 500;
+    font-size: rem(20);
+    line-height: math.div(30, 20);
+    color: #191919;
+    padding: 0 rem(20);
+    margin: rem(30) 0 rem(25);
+  }
+
+  // .participants__card-inner
+
+  &__card-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: rem(24);
+    padding: 0 rem(20);
+    background-color: #fff;
+  }
+
+  // .participants__item-text
+
+  &__item-text {
+    display: flex;
+    flex-direction: column;
+    gap: rem(5);
+    flex: 1 1 190px;
+  }
+}
+
+[data-showmore-button] span:last-child {
+  display: none;
+}
+._showmore-active [data-showmore-button] span {
+  display: none;
+}
+._showmore-active [data-showmore-button] span:last-child {
+  display: block;
+}
+
+.block__more {
+  font-family: "Golos";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height, or 143% */
+
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin-left: rem(20);
+  padding-top: rem(20);
+  color: #3078c0;
+  margin-bottom: rem(30);
+}

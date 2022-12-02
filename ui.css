@@ -1,0 +1,45 @@
+.btn {
+  font-weight: 500;
+  font-size: rem(14);
+  line-height: 1.4285714286;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #ffffff;
+  padding: rem(14) rem(20);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+.btn:focus {
+  border: 4px solid #549de7;
+}
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-fill {
+  background: #3078c0;
+}
+.btn-fill:active {
+  background: #1660aa;
+}
+.btn-fill.disable {
+  background: #B0B0B0;
+}
+.btn-fill.disable:focus {
+  border: none;
+}
+
+.btn-outline {
+  color: #3078c0;
+  background: #eef4fa;
+  border: 1px solid #3078c0;
+}
+.btn-outline:active {
+  color: #1660aa;
+  border: 1px solid #1660aa;
+}
+.btn-outline.disable {
+  color: #b0b0b0;
+  background: #f7f7f7;
+  border: 1px solid #b0b0b0;
+}/*# sourceMappingURL=ui.css.map */
